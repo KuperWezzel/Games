@@ -11,6 +11,7 @@ if __name__ == "__main__":
     num_cards = num_card_rows * start_cols
     active_cards = []
     giving_point = False
+    sg.theme('DarkGreen')
 
     # values to be set
     num_players = 3
@@ -44,7 +45,7 @@ if __name__ == "__main__":
         score_row,
     ]
 
-    sg.theme('Green')
+
     window = sg.Window("SET!", layout)
 
     while True:
