@@ -125,7 +125,7 @@ if __name__ == "__main__":
             active_cards = []
             giving_point = False
 
-        if event == ("k", "add") and not giving_point and deck:
+        if event == ("k", "add") and not giving_point and deck and num_cards <= 15:
             j = num_cards//3
             for i in range(num_card_rows):
                 new_card = deck.pop()
