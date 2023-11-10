@@ -61,7 +61,7 @@ if __name__ == "__main__":
 
         print(event, meta)
 
-        # clicking a card on the board
+        # clicking a (non-empty) card on the board
         if event[0] == 'b' and not giving_point and meta is not None:
             card = meta
 
