@@ -21,3 +21,6 @@ class MetropolisDeck:
     def count(self, card: MetropolisCard) -> int:
         return self.cards.count(card)
 
+    def __iter__(self):
+        return self.cards
+
