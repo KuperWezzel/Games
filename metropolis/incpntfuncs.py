@@ -1,7 +1,6 @@
 from metropolis.MetropolisPlayer import MetropolisPlayer
 from metropolis.MetropolisSign import MetropolisSign
 from metropolis.MetropolisCard import MetropolisCard
-from metropolis.MetropolisGame import MetropolisGame
 
 
 def constant(n: int) -> callable(MetropolisPlayer):
@@ -31,23 +30,23 @@ def stadsvilla_pts(n1: int, n2: int, card: MetropolisCard) -> callable(Metropoli
     return func
 
 
-def metro_ppr(sign: MetropolisSign, game: MetropolisGame) -> callable(MetropolisPlayer):
+def metro_ppr(sign: MetropolisSign) -> callable(MetropolisPlayer):
     def func(player: MetropolisPlayer) -> int:
-        other_pts = game.other_player_with_max_value_sign(sign, player).city.num_sign(sign)
+        other_pts = player.game.other_player_with_max_value_sign(sign, player).city.num_sign(sign)
         return player.city.num_sign(sign) + other_pts
     return func
 
 
-def in_game(n1: int, n2: int, card: MetropolisCard, game: MetropolisGame) -> callable(MetropolisPlayer):
+def in_game(n1: int, n2: int, card: MetropolisCard) -> callable(MetropolisPlayer):
     def func(player: MetropolisPlayer) -> int:
         out = n1
-        if card in game.all_cards_in_cities():
+        if card in player.game.all_cards_in_cities():
             out += n2
         return out
     return func
 
 
-def per_card_in_game(n1: int, n2: int, card: MetropolisCard, game: MetropolisGame) -> callable(MetropolisPlayer):
+def per_card_in_game(n1: int, n2: int, card: MetropolisCard) -> callable(MetropolisPlayer):
     def func(player: MetropolisPlayer) -> int:
-        return n1 + n2 * game.all_cards_in_cities().count(card)
+        return n1 + n2 * player.game.all_cards_in_cities().count(card)
     return func
