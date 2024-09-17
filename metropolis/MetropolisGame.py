@@ -1,6 +1,7 @@
 from metropolis.MetropolisCard import MetropolisCard
 from metropolis.MetropolisPlayer import MetropolisPlayer
 from metropolis.MetropolisSign import MetropolisSign
+from metropolis.MetropolisDeck import MetropolisDeck
 
 
 class MetropolisGame:
@@ -12,6 +13,7 @@ class MetropolisGame:
         cards = []
         for player in self.players:
             cards.extend(player.city)
+        return MetropolisDeck(cards)
 
     def other_players(self, player: MetropolisPlayer):
         copy_players = self.players[:]

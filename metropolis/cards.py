@@ -1,6 +1,7 @@
 from metropolis.MetropolisCard import MetropolisCard as card
 from metropolis.MetropolisSign import signs as s, MetropolisSign as sgn
-from metropolis.incpntfuncs import constant as c, per_sign as ps, with_card as wc, stadsvilla_pts as sv
+from metropolis.incpntfuncs import constant as c, per_sign as ps, with_card as wc, stadsvilla_pts as sv,\
+    metro_ppr as mpr, in_game as ig, per_card_in_game as pc
 
 # signs: source, shop, car
 no_signs = s(0, 0, 0)
@@ -15,8 +16,8 @@ winkelstraat = card("Winkelstraat", 1, s(0, 1, 1), c(1), c(0))
 klaverblad = card("Klaverblad", 2, s(0, 0, 0), ps(sgn.CAR), ps(sgn.CAR))
 monument = card("Monument", 9, s(3, 0, 0), c(1), c(8))
 casino = card("Casino", 6, s(0, 1, 0), c(4), c(1))
-universiteit = card("Universiteit", 5, s(1, 0, 0), c(0), pc(4, 1, school))
-onderzoekscentrum = card("Onderzoekscentrum", 4, no_signs, c(1), ig(2, 2, universiteit))
+universiteit = card("Universiteit", 5, s(1, 0, 0), c(0), pc(4, 1, school, game))
+onderzoekscentrum = card("Onderzoekscentrum", 4, no_signs, c(1), ig(2, 2, universiteit, game))
 ziekenhuis = card("Ziekenhuis", 6, s(1, 0, 0), c(1), c(4))
 kantoorgebouw = card("Kantoorgebouw", 2, no_signs, wc(1, 1, rijtjeshuis), c(2))
 pretpark = card("Pretpark", 8, s(0, 0, 3), c(2), c(5))
@@ -29,8 +30,8 @@ superstore = card("Superstore", 6, s(0, 2, 1), c(3), c(1))
 bouwkeet = card("Bouwkeet", 1, no_signs, c(0), c(0))
 sportpark = card("Sportpark", 4, s(0, 0, 2), c(0), c(3))
 theater = card("Theater", 5, s(1, 0, 0), c(1), c(3))
-metro = card("Metro", 11, no_signs, c(0), metro_ppr())
-museum = card("Museum", 5, s(1, 0, 0), pc(0, 2, school), c(4))
+metro = card("Metro", 11, no_signs, c(0), mpr(sgn.SOURCE, game))
+museum = card("Museum", 5, s(1, 0, 0), pc(0, 2, school, game), c(4))
 stadhuis = card("Stadhuis", 6, s(1, 0, 0), c(0), c(5))
 woonwijk = card("Woonwijk", 1, s(0, 1, 1), c(0), c(1))
 stadion = card("Stadion", 6, s(0, 0, 2), c(2), c(3))
@@ -40,8 +41,8 @@ bioscoop = card("Bioscoop", 2, s(1, 1, 1), c(1), c(0))
 treinstation = card("Treinstation", 4, s(1, 1, 1), c(1), c(2))
 vliegveld = card("Vliegveld", 9, s(0, 1, 1), c(1), c(8))
 industriepark = card("Industriepark", 1, no_signs, wc(1, 1, onderzoekscentrum), c(0))
-parkeerplusreis = card("Parkeer + Reis", 11, s(0, 0, 2), c(0), metro_ppr())
-snelweg = card("Snelweg", 3, s(0, 0, 1), c(0), pc(0, 2, klaverblad))
+parkeerplusreis = card("Parkeer + Reis", 11, s(0, 0, 2), c(0), mpr(sgn.CAR, game))
+snelweg = card("Snelweg", 3, s(0, 0, 1), c(0), pc(0, 2, klaverblad, game))
 parkeergarage = card("Parkeergarage", 0, s(1, 1, 1), c(0), c(0))
 congrescentrum = card("Congrescentrum", 7, s(1, 1, 0), c(1), c(5))
 handelscentrum = card("Handelscentrum", 7, s(0, 3, 0), c(2), ps(sgn.SHOP))
