@@ -1,11 +1,10 @@
-from metropolis.MetropolisCard import MetropolisCard
 from metropolis.MetropolisDeck import MetropolisDeck
-from metropolis.MetropolisSign import MetropolisSign
+from metropolis.MetropolisPlayer import MetropolisPlayer
+from cards import stadsvilla
 
 
 if __name__ == "__main__":
-    no_signs = {MetropolisSign.SOURCE: 0, MetropolisSign.CAR: 0, MetropolisSign.SHOP: 0}
-    c1 = MetropolisCard("Woonhuis", 1, no_signs, 1, 0)
-    c2 = MetropolisCard("Woonhuis", 1, no_signs, 1, 0)
-    deck = MetropolisDeck([c1])
-    print(c2 in deck)
+    deck = MetropolisDeck([stadsvilla, stadsvilla, stadsvilla])
+    player = MetropolisPlayer('Wessel', [], deck)
+    print(deck.player.name)
+    print(deck.income(), deck.points())

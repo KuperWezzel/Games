@@ -6,8 +6,8 @@ from random import shuffle
 
 
 class MetropolisGame:
-    def __init__(self, players: list[MetropolisPlayer], stack: list[MetropolisCard]):
-        self.players = players
+    def __init__(self, stack: list[MetropolisCard]):
+        self.players = []
         self.cards = stack
         self.discard_pile = []
         shuffle(self.cards)

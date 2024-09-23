@@ -21,13 +21,13 @@ def set_players_window():
 
         if event == sg.WIN_CLOSED:
             print("closing...")
-            return []
+            names = []
 
         elif event == "submit":
             names = []
             for i in range(1, num_players + 1):
                 names.append(values['in', i])
-            return names
+            break
 
         elif event == "add_player":
             num_players += 1
@@ -42,6 +42,9 @@ def set_players_window():
             window["txt", num_players].update(visible=False)
             window["in", num_players].update(visible=False)
             num_players -= 1
+
+    window.close()
+    return names
 
 
 if __name__ == "__main__":
