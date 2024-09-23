@@ -11,6 +11,8 @@ class MetropolisGame:
         self.cards = stack
         self.discard_pile = []
         shuffle(self.cards)
+        self.unique_cards = list(set(stack))
+        self.unique_cards.sort(key=lambda x: x.name)
 
     def all_cards_in_cities(self):
         cards = []

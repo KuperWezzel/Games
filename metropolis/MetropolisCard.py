@@ -1,4 +1,5 @@
 from metropolis.MetropolisSign import MetropolisSign
+import PySimpleGUI as sg
 
 
 class MetropolisCard:
@@ -15,3 +16,12 @@ class MetropolisCard:
 
     def __eq__(self, other):
         return self.name == other.name
+
+    def __str__(self):
+        return self.name
+
+    def layout(self):
+        return [[sg.Column([[sg.T(self.name)],
+                          [sg.T("cost: " + str(self.cost))],
+                          [sg.T("$ " + str())],
+                          [sg.T("* " + str())]])]]

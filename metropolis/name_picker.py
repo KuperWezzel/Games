@@ -12,7 +12,7 @@ def set_players_window():
     layout = [
         [sg.Button("Add player", k='add_player'), sg.Button("Remove player", k='rem_player')],
         [sg.Col([player_line(num_players)], k='cool_fields')],
-        [sg.Submit(k='submit')]
+        [sg.Submit("Start game", k='submit')]
     ]
 
     window = sg.Window("Metropolis - Select players", layout)

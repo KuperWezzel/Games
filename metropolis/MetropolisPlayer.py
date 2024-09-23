@@ -3,10 +3,16 @@ from metropolis.MetropolisDeck import MetropolisDeck
 
 
 class MetropolisPlayer:
-    def __init__(self, name: str, hand: list[MetropolisCard], city: MetropolisDeck):
+    def __init__(self, name: str, hand: list[MetropolisCard], city: MetropolisDeck = None):
         self.name = name
         self.hand = hand
-        self.city = city
+
+        if city is None:
+            self.city = MetropolisDeck([], self)
+        else:
+            city.player = self
+            self.city = city
+
         self.score: int = 0
         self.game = None
 
@@ -23,3 +29,6 @@ class MetropolisPlayer:
 
     def receive_card(self, card: MetropolisCard):
         self.hand.append(card)
+
+    def play_card(self, card: MetropolisCard):
+        self.city.cards.append(card)
