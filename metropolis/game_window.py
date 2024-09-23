@@ -6,20 +6,21 @@ from cards import all_cards
 
 
 def player_row(player, cards):
-    return sg.Col(
+    return [sg.Col(
         [[sg.T(player.name)],
          [sg.T("Score: 0 points", k=(player, "total_score")), sg.T("City: 0 points", k=(player, "city_score"))],
          [sg.T("Choose next card to play")],
          [sg.DropDown(cards, k=(player, "card_to_play"), readonly=True, default_value=cards[0])]
-         ], k=(player, "city"))
+         ], k=(player, "city")),
+            sg.VSep("black")]
 
 
 def game_window_layout(game: MetropolisGame):
     sg.theme("DarkGreen")
-    layout = [[]]
+    layout = [[sg.Button("Play round", k='play')], []]
     for player in game.players:
-        layout[0].append(player_row(player, game.unique_cards))
-    layout += [[sg.Button("Play cards", k='play')]]
+        layout[1].extend(player_row(player, game.unique_cards))
+    layout[1].pop()
 
     window = sg.Window("Metropolis", layout)
     while True:

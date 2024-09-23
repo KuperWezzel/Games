@@ -22,6 +22,7 @@ def set_players_window():
         if event == sg.WIN_CLOSED:
             print("closing...")
             names = []
+            break
 
         elif event == "submit":
             names = []
@@ -37,11 +38,13 @@ def set_players_window():
             else:
                 window["txt", num_players].update(visible=True)
                 window["in", num_players].update(visible=True)
+            window["in", num_players].set_focus()
 
         elif event == "rem_player" and num_players > 1:
             window["txt", num_players].update(visible=False)
-            window["in", num_players].update(visible=False)
+            window["in", num_players].update("", visible=False)
             num_players -= 1
+            window["in", num_players].set_focus()
 
     window.close()
     return names
