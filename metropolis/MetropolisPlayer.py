@@ -32,3 +32,8 @@ class MetropolisPlayer:
 
     def play_card(self, card: MetropolisCard):
         self.city.cards.append(card)
+
+    def discard_cards(self, cards: list[MetropolisCard]):
+        for card in cards:
+            self.hand.remove(card)
+            self.game.discard_pile.append(card)

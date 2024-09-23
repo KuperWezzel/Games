@@ -50,12 +50,14 @@ class MetropolisGame:
 
         player.receive_card(self.cards.pop())
 
+    def deal_n_to_player(self, n, player):
+        for _ in range(n):
+            self.deal_single_to_player(player)
+
     def deal_cards_income(self):
         for player in self.players:
-            for _ in range(player.income()):
-                self.deal_single_to_player(player)
+            self.deal_n_to_player(player.income(), player)
 
     def start_game(self):
-        for _ in range(7):
-            for player in self.players:
-                self.deal_single_to_player(player)
+        for player in self.players:
+            self.deal_n_to_player(7, player)
