@@ -22,8 +22,8 @@ class MetropolisCard:
         return self.name
 
     def layout(self):
-        return [[sg.Column([[sg.T(self.name)],
-                           [sg.T("cost: " + str(self.cost))],
-                           [sg.T("$ " + self.income.display)],
-                           [sg.T("* " + self.points.display)]]
-                           )]]
+        return [[sg.Frame("", [[sg.T(self.name)],
+                               [sg.T("cost: " + str(self.cost))],
+                               [sg.T("$" + self.income.display)],
+                               [sg.T("*" + self.points.display)]]
+                          )]]
