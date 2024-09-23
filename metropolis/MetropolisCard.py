@@ -1,9 +1,10 @@
 from metropolis.MetropolisSign import MetropolisSign
+from metropolis.MetropolisFunc import MetropolisFunc
 import PySimpleGUI as sg
 
 
 class MetropolisCard:
-    def __init__(self, name: str, cost: int, num_signs: dict[MetropolisSign, int], income: callable("MetropolisDeck"), points: callable("MetropolisDeck")):
+    def __init__(self, name: str, cost: int, num_signs: dict[MetropolisSign, int], income: MetropolisFunc, points: MetropolisFunc):
         self.name = name
         self.cost = cost
         self.total_signs = sum(num_signs.values())
@@ -22,6 +23,7 @@ class MetropolisCard:
 
     def layout(self):
         return [[sg.Column([[sg.T(self.name)],
-                          [sg.T("cost: " + str(self.cost))],
-                          [sg.T("$ " + str())],
-                          [sg.T("* " + str())]])]]
+                           [sg.T("cost: " + str(self.cost))],
+                           [sg.T("$ " + self.income.display)],
+                           [sg.T("* " + self.points.display)]]
+                           )]]

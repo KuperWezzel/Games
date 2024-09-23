@@ -23,5 +23,5 @@ class MetropolisDeck:
         return self.cards.count(card)
 
     def __iter__(self):
-        return self.cards
+        return iter(self.cards)
 
