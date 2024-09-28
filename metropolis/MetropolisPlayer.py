@@ -67,4 +67,4 @@ class MetropolisPlayer:
         return actual_price + len(cards) <= len(self.hand)
 
     def calculate_card_price(self, card: MetropolisCard):
-        return card.cost - self.discounts[card]
+        return max(0, card.cost - self.discounts[card])
