@@ -32,9 +32,11 @@ class MetropolisCard:
                     symbols += f"{sgn.value}" + spaces * " "
             else:
                 symbols = symbols[:-spaces]
-        return [[sg.Frame("", [[sg.Push(), sg.T(str(self.cost) + "  " + self.name + "  " + str(self.cost)), sg.Push()],
-                               [sg.Push(), sg.T(symbols), sg.Push()],
-                               [sg.Push(), sg.T(self.extra_info.txt), sg.Push()],
-                               [sg.T("$" + self.income.display)],
-                               [sg.T("*" + self.points.display)]]
-                          )]]
+
+        frame = sg.Frame("", [[sg.Push(), sg.T(str(self.cost) + "  " + self.name + "  " + str(self.cost)), sg.Push()],
+                              [sg.Push(), sg.T(symbols), sg.Push()],
+                              [sg.Push(), sg.T(self.extra_info.txt), sg.Push()],
+                              [sg.T("$" + self.income.display)],
+                              [sg.T("*" + self.points.display)]])
+
+        return [[sg.Push(), frame, sg.Push()]]
