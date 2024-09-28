@@ -1,14 +1,14 @@
 from metropolis.MetropolisCard import MetropolisCard
-from metropolis.MetropolisDeck import MetropolisDeck
+from metropolis.MetropolisDeck import MetropolisCity
 
 
 class MetropolisPlayer:
-    def __init__(self, name: str, hand: list[MetropolisCard], city: MetropolisDeck = None):
+    def __init__(self, name: str, hand: list[MetropolisCard], city: MetropolisCity = None):
         self.name = name
         self.hand = hand
 
         if city is None:
-            self.city = MetropolisDeck([], self)
+            self.city = MetropolisCity([], self)
         else:
             city.player = self
             self.city = city
@@ -58,7 +58,7 @@ class MetropolisPlayer:
         return False
 
     def may_play_cards(self, cards: list[MetropolisCard]):
-        return all(self.may_play_card(card) for card in cards)
+        return len(cards) <= self.builds_per_turn and all(self.may_play_card(card) for card in cards)
 
     def can_pay_for_cards(self, cards: list[MetropolisCard]):
         actual_price = 0

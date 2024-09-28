@@ -2,7 +2,7 @@ from metropolis.MetropolisCard import MetropolisCard
 from metropolis.MetropolisSign import MetropolisSign
 
 
-class MetropolisDeck:
+class MetropolisCity:
     def __init__(self, cards: list[MetropolisCard], player=None):
         self.cards = cards
         self.player = player

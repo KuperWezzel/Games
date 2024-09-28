@@ -1,7 +1,7 @@
 from metropolis.MetropolisCard import MetropolisCard
 from metropolis.MetropolisPlayer import MetropolisPlayer
 from metropolis.MetropolisSign import MetropolisSign
-from metropolis.MetropolisDeck import MetropolisDeck
+from metropolis.MetropolisDeck import MetropolisCity
 from random import shuffle
 
 
@@ -18,7 +18,7 @@ class MetropolisGame:
         cards = []
         for player in self.players:
             cards.extend(player.city)
-        return MetropolisDeck(cards)
+        return MetropolisCity(cards)
 
     def other_players(self, player: MetropolisPlayer):
         copy_players = self.players[:]
