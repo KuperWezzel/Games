@@ -82,7 +82,7 @@ src_discounts = {}
 for card in all_cards:
     if card.num_signs[sgn.SOURCE] >= 1:
         src_discounts[card] = 1
-gemeentehuis.extra_info = MetropolisExtraInfo(f"max. 1/speler\n-1 bouwkosten voor alle kaarten met {sgn.SOURCE}",
+gemeentehuis.extra_info = MetropolisExtraInfo(f"max. 1/speler\n-1 bouwkosten voor alle kaarten met {sgn.SOURCE.value}",
                                               max_amount=1, discounts=src_discounts)
 winkelstraat.extra_info = MetropolisExtraInfo(f"Voorwaarde:\n{woonhuis} of {woonwijk}\n of {klaverblad}",
                                               needs=[woonhuis, woonwijk, klaverblad])

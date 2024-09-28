@@ -2,9 +2,9 @@ from enum import Enum
 
 
 class MetropolisSign(Enum):
-    SOURCE = 0
-    SHOP = 1
-    CAR = 2
+    SOURCE = "\U000026F2"
+    SHOP = "\U0001F6D2"
+    CAR = "\U0001F697"
 
 
 def signs(src: int, shop: int, car: int) -> dict[MetropolisSign, int]:

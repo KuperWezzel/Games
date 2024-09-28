@@ -24,8 +24,17 @@ class MetropolisCard:
         return self.name
 
     def layout(self):
-        return [[sg.Frame("", [[sg.T(str(self.cost) + "  " + self.name + "  " + str(self.cost))],
-                               [sg.T(self.extra_info.txt)],
+        symbols = ""
+        if self.total_signs > 0:
+            spaces = 5
+            for sgn, amount in self.num_signs.items():
+                for _ in range(amount):
+                    symbols += f"{sgn.value}" + spaces * " "
+            else:
+                symbols = symbols[:-spaces]
+        return [[sg.Frame("", [[sg.Push(), sg.T(str(self.cost) + "  " + self.name + "  " + str(self.cost)), sg.Push()],
+                               [sg.Push(), sg.T(symbols), sg.Push()],
+                               [sg.Push(), sg.T(self.extra_info.txt), sg.Push()],
                                [sg.T("$" + self.income.display)],
                                [sg.T("*" + self.points.display)]]
                           )]]

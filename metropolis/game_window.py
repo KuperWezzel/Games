@@ -41,7 +41,7 @@ def game_window_layout(game: MetropolisGame):
 
 if __name__ == "__main__":
     players = [MetropolisPlayer('Wessel', [])]
-    game = MetropolisGame(all_cards)
+    game = MetropolisGame(list(all_cards.keys()))
     for player in players:
         game.add_player(player)
     game_window_layout(game)

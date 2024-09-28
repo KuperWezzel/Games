@@ -13,7 +13,7 @@ def constant(n: int) -> callable(MetropolisPlayer):
 def per_sign(n: int, sign: MetropolisSign) -> callable(MetropolisPlayer):
     def func(player: MetropolisPlayer) -> int:
         return n * player.city.num_sign(sign)
-    return MetropolisFunc(f"{n}/{sign}", func)
+    return MetropolisFunc(f"{n}/{sign.value}", func)
 
 
 def with_card(n1: int, n2: int, card: MetropolisCard) -> callable(MetropolisPlayer):
@@ -35,7 +35,7 @@ def metro_ppr(n1, n2, sign1: MetropolisSign, sign2: MetropolisSign) -> callable(
     def func(player: MetropolisPlayer) -> int:
         other_pts = player.game.other_player_with_max_value_sign(sign2, player).city.num_sign(sign2)
         return n1 * player.city.num_sign(sign1) + n2 * other_pts
-    return MetropolisFunc(f"{n1}/{sign1}\n +{n2}/{sign2} of one other player", func)
+    return MetropolisFunc(f"{n1}/{sign1.value}\n +{n2}/{sign2.value} of one other player", func)
 
 
 def in_game(n1: int, n2: int, card: MetropolisCard) -> callable(MetropolisPlayer):
