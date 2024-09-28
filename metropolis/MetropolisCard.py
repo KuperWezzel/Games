@@ -10,7 +10,7 @@ class MetropolisCard:
         self.cost = cost
         self.total_signs = sum(num_signs.values())
         self.num_signs = num_signs
-        self.extra_info = extra_info
+        self.extra_info = extra_info if extra_info is not None else MetropolisExtraInfo("")
         self.income = income
         self.points = points
 
@@ -24,8 +24,8 @@ class MetropolisCard:
         return self.name
 
     def layout(self):
-        return [[sg.Frame("", [[sg.T(self.name)],
-                               [sg.T("cost: " + str(self.cost))],
+        return [[sg.Frame("", [[sg.T(str(self.cost) + "  " + self.name + "  " + str(self.cost))],
+                               [sg.T(self.extra_info.txt)],
                                [sg.T("$" + self.income.display)],
                                [sg.T("*" + self.points.display)]]
                           )]]

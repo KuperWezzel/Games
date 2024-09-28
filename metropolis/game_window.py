@@ -33,7 +33,7 @@ def game_window_layout(game: MetropolisGame):
         if event == "play":
             for player in game.players:
                 card: MetropolisCard = values[player, "card_to_play"]
-                player.play_card(card)
+                player.play_cards([card])
                 window.extend_layout(window[player, "city"], card.layout())
                 window[player, 'city_score'].update(f"City: {player.points()} points")
                 window[player, 'total_score'].update(f"Score: {player.score} points")
