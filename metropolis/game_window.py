@@ -17,7 +17,7 @@ def player_row(player, cards):
 
 def game_window_layout(game: MetropolisGame):
     sg.theme("DarkGreen")
-    layout = [[sg.Button("Play round", k='play')], []]
+    layout: list[list] = [[sg.Button("Play round", k='play')], []]
     for player in game.players:
         layout[1].extend(player_row(player, game.unique_cards))
     layout[1].pop()

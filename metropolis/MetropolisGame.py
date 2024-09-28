@@ -1,7 +1,7 @@
 from metropolis.MetropolisCard import MetropolisCard
 from metropolis.MetropolisPlayer import MetropolisPlayer
 from metropolis.MetropolisSign import MetropolisSign
-from metropolis.MetropolisDeck import MetropolisCity
+from metropolis.MetropolisCity import MetropolisCity
 from random import shuffle
 
 

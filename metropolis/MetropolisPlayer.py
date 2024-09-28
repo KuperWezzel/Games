@@ -1,5 +1,5 @@
 from metropolis.MetropolisCard import MetropolisCard
-from metropolis.MetropolisDeck import MetropolisCity
+from metropolis.MetropolisCity import MetropolisCity
 
 
 class MetropolisPlayer:
