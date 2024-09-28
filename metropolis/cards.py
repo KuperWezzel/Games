@@ -64,14 +64,17 @@ stadsvilla = card("Stadsvilla", 4, no_signs, c(0), sv(3, 2, fake_stadsvilla))
 flatgebouw = card("Flatgebouw", 3, s(1, 1, 0), c(1), c(1))
 modeboetiek = card("Modeboetiek", 2, s(1, 1, 0), wc(1, 1, zakencentrum), c(0))
 wolkenkrabber = card("Wolkenkrabber", 8, s(1, 0, 0), c(1), c(7))
+winkelcentrum = card("Winkelcentrum", 8, s(0, 2, 1), c(3), ps(1, sgn.SHOP))
 
 
-all_cards = [architect, zakencentrum, beursgebouw, school, rijtjeshuis, winkelstraat, klaverblad, monument, casino,
-             universiteit, onderzoekscentrum, ziekenhuis, kantoorgebouw, pretpark, bioscoopcomplex, technopark,
-             operagebouw, concertgebouw, busstation, superstore, bouwkeet, sportpark, theater, metro, museum, stadhuis,
-             woonwijk, stadion, warenhuis, park, bioscoop, treinstation, vliegveld, industriepark, parkeerplusreis,
-             snelweg, parkeergarage, congrescentrum, handelscentrum, winkelpassage, restaurant, industrieterrein,
-             gemeentehuis, modernekunst, woonhuis, brug, stadsvilla, flatgebouw, modeboetiek, wolkenkrabber]
+all_cards = {architect: 5, zakencentrum: 4, beursgebouw: 1, school: 4, rijtjeshuis: 3, winkelstraat: 2, klaverblad: 4,
+             monument: 1, casino: 1, universiteit: 1, onderzoekscentrum: 2, ziekenhuis: 1, kantoorgebouw: 3,
+             pretpark: 1, bioscoopcomplex: 2, technopark: 2, operagebouw: 1, concertgebouw: 1, busstation: 1,
+             superstore: 1, bouwkeet: 2, sportpark: 1, theater: 1, metro: 1, museum: 1, stadhuis: 1, woonwijk: 5,
+             stadion: 1, warenhuis: 3, park: 4, bioscoop: 2, treinstation: 1, vliegveld: 1, industriepark: 4,
+             parkeerplusreis: 1, snelweg: 2, parkeergarage: 3, congrescentrum: 1, handelscentrum: 1, winkelpassage: 5,
+             restaurant: 3, industrieterrein: 2, gemeentehuis: 4, modernekunst: 1, woonhuis: 3, brug: 2, stadsvilla: 6,
+             flatgebouw: 2, modeboetiek: 2, wolkenkrabber: 2, winkelcentrum: 1}
 
 # extra infos (max. 1pp + bouwkeet already done above)
 # gemeentehuis
