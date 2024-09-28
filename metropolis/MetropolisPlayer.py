@@ -16,6 +16,7 @@ class MetropolisPlayer:
         self.score: int = 0
         self.game = None
         self.discounts: dict[MetropolisCard, int] = {}
+        self.builds_per_turn = 1
 
     def points(self):
         pts = self.city.points()
@@ -32,9 +33,14 @@ class MetropolisPlayer:
         self.hand.append(card)
 
     def play_card(self, card: MetropolisCard):
-        if card not in self.city:
-            self.discounts.update(card.extra_info.discounts)
+        # check if card may be played
         if self.may_play_card(card) and self.can_pay_for_card(card):
+            # update discounts
+            if card not in self.city:
+                self.discounts.update(card.extra_info.discounts)
+            # update number of cards that may be built per turn
+            self.builds_per_turn = max(self.builds_per_turn, card.extra_info.builds_per_turn)
+            # add card to city
             self.city.cards.append(card)
 
     def discard_cards(self, cards: list[MetropolisCard]):
