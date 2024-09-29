@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 from metropolis.MetropolisGame import MetropolisGame
 from metropolis.MetropolisPlayer import MetropolisPlayer
 from metropolis.MetropolisCard import MetropolisCard
-from cards import all_cards, architect
+from cards import normal_deck, architect
 
 
 def player_row(player):
@@ -42,7 +42,7 @@ def game_window_layout(game: MetropolisGame):
 
 if __name__ == "__main__":
     players = [MetropolisPlayer('Wessel', [])]
-    game = MetropolisGame(list(all_cards.keys()))
+    game = MetropolisGame(normal_deck)
     for player in players:
         game.add_player(player)
     game.start_game()

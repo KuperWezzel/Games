@@ -3,6 +3,7 @@ from metropolis.MetropolisExtraInfo import MetropolisExtraInfo
 from metropolis.MetropolisSign import signs as s, MetropolisSign as sgn
 from metropolis.incpntfuncs import constant as c, per_sign as ps, with_card as wc, stadsvilla_pts as sv,\
     metro_ppr as mpr, in_game as ig, per_card_in_game as pc
+from copy import copy
 
 # signs: source, shop, car
 no_signs = s(0, 0, 0)
@@ -75,6 +76,13 @@ all_cards = {architect: 5, zakencentrum: 4, beursgebouw: 1, school: 4, rijtjeshu
              parkeerplusreis: 1, snelweg: 2, parkeergarage: 3, congrescentrum: 1, handelscentrum: 1, winkelpassage: 5,
              restaurant: 3, industrieterrein: 2, gemeentehuis: 4, modernekunst: 1, woonhuis: 3, brug: 2, stadsvilla: 6,
              flatgebouw: 2, modeboetiek: 2, wolkenkrabber: 2, winkelcentrum: 1}
+
+normal_deck = []
+for card, amount in all_cards.items():
+    if card.name == "Architect":
+        continue  # we don't want to put the architects in the deck
+    for _ in range(amount):
+        normal_deck.append(copy(card))
 
 # extra infos (max. 1pp + bouwkeet already done above)
 # gemeentehuis
