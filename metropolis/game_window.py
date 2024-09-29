@@ -6,7 +6,7 @@ from cards import normal_deck, architect
 
 
 def player_row(player):
-    cards = [architect] + player.hand
+    cards = [architect] + sorted(player.hand)
     return [sg.Col(
         [[sg.Push(), sg.T(player.name), sg.Push()],
          [sg.T("Score: 0 points", k=(player, "total_score")), sg.T("City: 0 points", k=(player, "city_score"))],
@@ -22,7 +22,11 @@ def game_window_layout(game: MetropolisGame):
     for player in game.players:
         layout[0].extend(player_row(player))
     layout[0].pop()
+    return layout
 
+
+def event_loop(game: MetropolisGame):
+    layout = game_window_layout(game)
     window = sg.Window("Metropolis", layout)
     while True:
         event, values = window.read()
@@ -46,4 +50,4 @@ if __name__ == "__main__":
     for player in players:
         game.add_player(player)
     game.start_game()
-    game_window_layout(game)
+    event_loop(game)

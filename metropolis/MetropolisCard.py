@@ -23,6 +23,9 @@ class MetropolisCard:
     def __str__(self):
         return self.name
 
+    def __lt__(self, other):
+        return self.name < other.name
+
     def layout(self):
         symbols = ""
         if self.total_signs > 0:
