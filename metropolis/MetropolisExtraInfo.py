@@ -1,4 +1,5 @@
 from math import inf, isinf
+from helper import text_generator
 
 
 class MetropolisExtraInfo:
@@ -17,18 +18,12 @@ class MetropolisExtraInfo:
             new_txt += f"max. {self.max_amount}/speler\n\n"
 
         if self.needs:
-            new_txt += "Voorwaarde:\n"
-            for card in self.needs:
-                new_txt += f"{card} of "
-            else:
-                new_txt = new_txt[:-4] + "\n\n"
+            new_txt += text_generator(self.needs, "Voorwaarde:\n", "\n\n", " of ", " of ")
 
         if self.discounts:
             self.get_reverse_discounts()
             for discount, cards in self.reverse_discounts.items():
-                new_txt += f"-{discount} bouwkosten voor "
-                for card in cards:
-                    new_txt += f"{card} en "
+                new_txt += text_generator(cards, f"-{discount} bouwkosten voor ", " en ", " en ", " en ")
             else:
                 new_txt = new_txt[:-4] + f" als je ten minste 1 {corresponding_card} hebt\n\n"
 
