@@ -13,6 +13,8 @@ class MetropolisGame:
         shuffle(self.cards)
         self.unique_cards = list(set(stack))
         self.unique_cards.sort(key=lambda x: x.name)
+        self.MAX_HAND_CARDS = 12
+        self.MAX_SCORE = 50
 
     def all_cards_in_cities(self):
         cards = []

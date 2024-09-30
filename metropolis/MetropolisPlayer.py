@@ -95,3 +95,6 @@ class MetropolisPlayer:
 
     def calculate_total_card_price(self, cards: list[MetropolisCard]):
         return sum(self.calculate_card_price(card) for card in cards)
+
+    def has_too_many_cards(self):
+        return len(self.hand) > self.game.MAX_HAND_CARDS

@@ -75,8 +75,9 @@ def event_loop(game: MetropolisGame):
             game.deal_cards_income()
             for player in game.players:
                 # check if player has too many cards
-                if ...:
-                    ...
+                if player.has_too_many_cards():
+                    tbr_cards = discard_popup(len(player.hand) - game.MAX_HAND_CARDS, player.hand)
+                    player.discard_cards(tbr_cards)
                 window[player, 'total_score'].update(f"Score: {player.update_score()} points")
                 update_card_combo(window, player)
 
