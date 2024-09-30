@@ -1,18 +1,25 @@
 import PySimpleGUI as sg
 from metropolis.MetropolisGame import MetropolisGame
+from metropolis.MetropolisCard import DEFAULT_THEME
 
 
-def player_line(n: int):
-    return [sg.Text(f"Player {n}", k=('txt', n)), sg.InputText(k=('in', n))]
+def player_line(n: int, name: str = ""):
+    return [sg.Text(f"Player {n}", k=('txt', n)), sg.InputText(name, k=('in', n))]
 
 
-def get_player_names_window():
-    sg.theme('DarkGreen')
-    num_players = 1
-    max_players = 1
+def get_player_names_window(names: list[str] = None):
+    if names is None:
+        names = [""]
+    sg.theme(DEFAULT_THEME)
+    max_players = len(names)
+    num_players = 0
+    col = []
+    for num_players, name in enumerate(names):
+        col.append(player_line(num_players + 1, name))
+    num_players += 1
     layout = [
         [sg.Button("Add player", k='add_player'), sg.Button("Remove player", k='rem_player')],
-        [sg.Col([player_line(num_players)], k='cool_fields')],
+        [sg.Col(col, k='cool_fields')],
         [sg.Submit("Start game", k='submit')]
     ]
 

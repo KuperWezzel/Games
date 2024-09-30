@@ -63,3 +63,6 @@ class MetropolisGame:
     def start_game(self):
         for player in self.players:
             self.deal_n_to_player(7, player)
+
+    def has_winner(self):
+        return max(player.score for player in self.players) >= self.MAX_SCORE

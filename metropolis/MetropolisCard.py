@@ -3,6 +3,9 @@ from metropolis.MetropolisFunc import MetropolisFunc
 from metropolis.MetropolisExtraInfo import MetropolisExtraInfo
 import PySimpleGUI as sg
 
+CARD_THEME = "GreenTan"
+DEFAULT_THEME = "DarkGreen"
+
 
 class MetropolisCard:
     def __init__(self, name: str, cost: int, num_signs: dict[MetropolisSign, int], income: MetropolisFunc, points: MetropolisFunc, extra_info: MetropolisExtraInfo = None):
@@ -27,6 +30,7 @@ class MetropolisCard:
         return self.name < other.name
 
     def layout(self):
+        sg.theme(CARD_THEME)
         symbols = ""
         if self.total_signs > 0:
             spaces = 5
@@ -41,5 +45,5 @@ class MetropolisCard:
                               [sg.Push(), sg.T(self.extra_info.txt), sg.Push()],
                               [sg.T("$" + self.income.display)],
                               [sg.T("*" + self.points.display)]])
-
+        sg.theme(DEFAULT_THEME)
         return [[sg.Push(), frame, sg.Push()]]
