@@ -1,4 +1,4 @@
-def text_generator(items, pre, post, sep=", ", final_sep=" and "):
+def text_generator(items, pre: str, post: str, sep=", ", final_sep=" and ") -> str:
     out = pre
     for i, item in enumerate(items):
         if i == len(items) - 2:

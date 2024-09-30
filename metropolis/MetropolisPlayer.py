@@ -1,5 +1,6 @@
 from metropolis.MetropolisCard import MetropolisCard
 from metropolis.MetropolisCity import MetropolisCity
+from helper import text_generator as tg
 
 
 class MetropolisPlayer:
@@ -64,6 +65,7 @@ class MetropolisPlayer:
             for c2 in card.extra_info.needs:
                 if c2 in self.city:
                     return True
+            print(tg(card.extra_info.needs, f'may not play {card} because we dont have ', '', final_sep=' or '))
             return False
         else:
             # we have no necessary cards, so return True
@@ -73,12 +75,11 @@ class MetropolisPlayer:
         if not self.can_pay_for_cards(cards):
             print('cards are too expensive')
             return False
-        if len(cards) > self.builds_per_turn:
+        if len(cards) > max([card.extra_info.builds_per_turn for card in cards] + [self.builds_per_turn]):
             print('playing too many cards')
             return False
         for card in cards:
             if not self.may_play_card(card):
-                print(f'may not play {card}')
                 return False
         return True
 

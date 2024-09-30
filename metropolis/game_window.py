@@ -89,8 +89,7 @@ def event_loop(game: MetropolisGame):
         event, values = window.read()
 
         if event == sg.WIN_CLOSED:
-            print("closing...")
-            another_game = False
+            another_game = end_screen(game)
             break
 
         if event == "deal_and_score":
@@ -142,6 +141,5 @@ if __name__ == "__main__":
         game2.add_player(player2)
     players2[0].score = 55
     game2.start_game()
-    # players2[0].hand.extend([onderzoekscentrum, monument])
-    end_screen(game2)
-    # event_loop(game2)
+    # players2[0].hand.extend([school])
+    event_loop(game2)
