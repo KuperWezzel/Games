@@ -33,16 +33,18 @@ class MetropolisPlayer:
         self.hand.append(card)
 
     def play_cards(self, cards: list[MetropolisCard]):
-        # check if cards may be played
-        if self.may_play_cards(cards) and self.can_pay_for_cards(cards):
-            for card in cards:
-                # update discounts
-                if card not in self.city:
-                    self.discounts.update(card.extra_info.discounts)
-                # update number of cards that may be built per turn
-                self.builds_per_turn = max(self.builds_per_turn, card.extra_info.builds_per_turn)
-                # add card to city
-                self.city.cards.append(card)
+        for card in cards:
+            # update discounts
+            if card not in self.city:
+                self.discounts.update(card.extra_info.discounts)
+            # update number of cards that may be built per turn
+            self.builds_per_turn = max(self.builds_per_turn, card.extra_info.builds_per_turn)
+            # add card to city
+            self.city.cards.append(card)
+            # remove card from hand
+            if card.name != "Architect":
+                self.hand.remove(card)
+            print([card.name for card in self.hand])
 
     def discard_cards(self, cards: list[MetropolisCard]):
         for card in cards:
@@ -50,21 +52,44 @@ class MetropolisPlayer:
             self.game.discard_pile.append(card)
 
     def may_play_card(self, card: MetropolisCard):
-        if self.city.count(card) >= card.extra_info.max_amount:
+        if card not in self.hand and card.name != "Architect":
+            print(f'may not play {card} because it is not in hand')
             return False
-        for c2 in card.extra_info.needs:
-            if c2 in self.city:
-                return True
-        return False
+        if self.city.count(card) >= card.extra_info.max_amount:
+            print(f'may not play {card} because we already have the max amount of this card')
+            return False
+        if card.extra_info.needs:
+            for c2 in card.extra_info.needs:
+                if c2 in self.city:
+                    return True
+            return False
+        else:
+            # we have no necessary cards, so return True
+            return True
 
     def may_play_cards(self, cards: list[MetropolisCard]):
-        return len(cards) <= self.builds_per_turn and all(self.may_play_card(card) for card in cards)
+        if not self.can_pay_for_cards(cards):
+            print('cards are too expensive')
+            return False
+        if len(cards) > self.builds_per_turn:
+            print('playing too many cards')
+            return False
+        for card in cards:
+            if not self.may_play_card(card):
+                print(f'may not play {card}')
+                return False
+        return True
 
     def can_pay_for_cards(self, cards: list[MetropolisCard]):
         actual_price = 0
         for card in cards:
+            if card.name == "Architect":
+                actual_price -= 1  # offset for Architect not being in your hand
             actual_price += self.calculate_card_price(card)
         return actual_price + len(cards) <= len(self.hand)
 
     def calculate_card_price(self, card: MetropolisCard):
-        return max(0, card.cost - self.discounts[card])
+        return max(0, card.cost - self.discounts.get(card, 0))
+
+    def calculate_total_card_price(self, cards: list[MetropolisCard]):
+        return sum(self.calculate_card_price(card) for card in cards)
