@@ -7,9 +7,9 @@ from random import shuffle
 
 class MetropolisGame:
     def __init__(self, stack: list[MetropolisCard]):
-        self.players = []
+        self.players: list[MetropolisPlayer] = []
         self.cards = stack
-        self.discard_pile = []
+        self.discard_pile: list[MetropolisCard] = []
         shuffle(self.cards)
         self.unique_cards = list(set(stack))
         self.unique_cards.sort(key=lambda x: x.name)

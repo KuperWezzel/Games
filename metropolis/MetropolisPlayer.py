@@ -18,10 +18,12 @@ class MetropolisPlayer:
         self.discounts: dict[MetropolisCard, int] = {}
         self.builds_per_turn = 1
 
-    def points(self):
-        pts = self.city.points()
-        self.score += pts
-        return pts
+    def city_points(self):
+        return self.city.points()
+
+    def update_score(self):
+        self.score += self.city_points()
+        return self.score
 
     def income(self):
         return self.city.income()
