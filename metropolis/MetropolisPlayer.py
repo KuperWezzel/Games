@@ -47,7 +47,6 @@ class MetropolisPlayer:
             # remove card from hand
             if card.name != "Architect":
                 self.hand.remove(card)
-            print([card.name for card in self.hand])
 
     def discard_cards(self, cards: list[MetropolisCard]):
         for card in cards:

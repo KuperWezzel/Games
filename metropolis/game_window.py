@@ -84,7 +84,7 @@ def end_screen(game) -> bool:
 
 def event_loop(game: MetropolisGame):
     layout = game_window_layout(game)
-    window = sg.Window("Metropolis", layout)
+    window = sg.Window("Metropolis", layout, resizable=True)
     while True:
         event, values = window.read()
 
@@ -127,8 +127,10 @@ def event_loop(game: MetropolisGame):
                 # remove cards from listbox
                 update_card_combo(window, player)
             else:
+                sg.theme(POPUP_THEME)
                 names = text_generator(cards, "You cannot play ", " currently")
                 sg.popup_no_titlebar(names)
+                sg.theme(DEFAULT_THEME)
 
     window.close()
     return another_game
@@ -139,7 +141,7 @@ if __name__ == "__main__":
     game2 = MetropolisGame(normal_deck)
     for player2 in players2:
         game2.add_player(player2)
-    players2[0].score = 55
+    # players2[0].score = 55
     game2.start_game()
     # players2[0].hand.extend([school])
     event_loop(game2)

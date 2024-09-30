@@ -68,6 +68,7 @@ wolkenkrabber = card("Wolkenkrabber", 8, s(1, 0, 0), c(1), c(7))
 winkelcentrum = card("Winkelcentrum", 8, s(0, 2, 1), c(3), ps(1, sgn.SHOP))
 
 
+# all cards, normal deck is made at the bottom after we add the ExtraInfo
 all_cards = {architect: 5, zakencentrum: 4, beursgebouw: 1, school: 4, rijtjeshuis: 3, winkelstraat: 2, klaverblad: 4,
              monument: 1, casino: 1, universiteit: 1, onderzoekscentrum: 2, ziekenhuis: 1, kantoorgebouw: 3,
              pretpark: 1, bioscoopcomplex: 2, technopark: 2, operagebouw: 1, concertgebouw: 1, busstation: 1,
@@ -76,13 +77,6 @@ all_cards = {architect: 5, zakencentrum: 4, beursgebouw: 1, school: 4, rijtjeshu
              parkeerplusreis: 1, snelweg: 2, parkeergarage: 3, congrescentrum: 1, handelscentrum: 1, winkelpassage: 5,
              restaurant: 3, industrieterrein: 2, gemeentehuis: 4, modernekunst: 1, woonhuis: 3, brug: 2, stadsvilla: 6,
              flatgebouw: 2, modeboetiek: 2, wolkenkrabber: 2, winkelcentrum: 1}
-
-normal_deck = []
-for card, amount in all_cards.items():
-    if card.name == "Architect":
-        continue  # we don't want to put the architects in the deck
-    for _ in range(amount):
-        normal_deck.append(copy(card))
 
 # extra infos (max. 1pp + bouwkeet already done above)
 # gemeentehuis
@@ -111,3 +105,11 @@ onderzoekscentrum.extra_info = MetropolisExtraInfo(f"-2 bouwkosten voor {technop
 rijtjeshuis.extra_info = MetropolisExtraInfo(f"-1 bouwkosten voor {restaurant}\n" +
                                              f" en {modeboetiek} als je \nten minste 1 {rijtjeshuis} hebt",
                                              discounts={restaurant: 1, modeboetiek: 1})
+
+# making the normal deck
+normal_deck = []
+for card, amount in all_cards.items():
+    if card.name == "Architect":
+        continue  # we don't want to put the architects in the deck
+    for _ in range(amount):
+        normal_deck.append(copy(card))
