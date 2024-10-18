@@ -10,6 +10,7 @@ def player_line(n: int, name: str = ""):
 def get_player_names_window(names: list[str] = None):
     if names is None:
         names = [""]
+    is_normal_game = True
     sg.theme(DEFAULT_THEME)
     max_players = len(names)
     num_players = 0
@@ -20,7 +21,7 @@ def get_player_names_window(names: list[str] = None):
     layout = [
         [sg.Button("Add player", k='add_player'), sg.Button("Remove player", k='rem_player')],
         [sg.Col(col, k='cool_fields')],
-        [sg.Submit("Start game", k='submit')]
+        [sg.Submit("Start game", k='start_game'), sg.Submit("Score counter", k='start_counter')]
     ]
 
     window = sg.Window("Metropolis - Select players", layout)
@@ -32,10 +33,11 @@ def get_player_names_window(names: list[str] = None):
             names = []
             break
 
-        elif event == "submit":
+        elif event[:5] == "start":
             names = []
             for i in range(1, num_players + 1):
                 names.append(values['in', i])
+            is_normal_game = event == "start_game"
             break
 
         elif event == "add_player":
@@ -55,7 +57,7 @@ def get_player_names_window(names: list[str] = None):
             window["in", num_players].set_focus()
 
     window.close()
-    return names
+    return is_normal_game, names
 
 
 def start_discard_window(game: MetropolisGame):
