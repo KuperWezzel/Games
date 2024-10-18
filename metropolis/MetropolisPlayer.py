@@ -35,18 +35,21 @@ class MetropolisPlayer:
     def receive_card(self, card: MetropolisCard):
         self.hand.append(card)
 
+    def play_card(self, card: MetropolisCard):
+        # update discounts
+        if card not in self.city:
+            self.discounts.update(card.extra_info.discounts)
+        # update number of cards that may be built per turn
+        self.builds_per_turn = max(self.builds_per_turn, card.extra_info.builds_per_turn)
+        # add card to city
+        self.city.cards.append(card)
+        # remove card from hand
+        if card.name != "Architect":
+            self.hand.remove(card)
+
     def play_cards(self, cards: list[MetropolisCard]):
         for card in cards:
-            # update discounts
-            if card not in self.city:
-                self.discounts.update(card.extra_info.discounts)
-            # update number of cards that may be built per turn
-            self.builds_per_turn = max(self.builds_per_turn, card.extra_info.builds_per_turn)
-            # add card to city
-            self.city.cards.append(card)
-            # remove card from hand
-            if card.name != "Architect":
-                self.hand.remove(card)
+            self.play_card(card)
 
     def discard_cards(self, cards: list[MetropolisCard]):
         for card in cards:
